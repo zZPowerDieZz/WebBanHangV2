@@ -24,25 +24,41 @@
     <tbody class="table-secondary">
         @foreach (var x in Model)
         {
-            <tr>
-                <td class="text-primary">@x.Name</td>
-                <td class="text-primary">@x.Price</td>
-                <td class="text-primary">@x.Category.Name</td>
-                <td>
-                    @if (x.ImageUrl != null)
-                    {
-                        <img src="@x.ImageUrl" style="width:100px" />
-                    }
-                </td>
-                <td>
-                    <a asp-action="Update" asp-route-id="@x.Id" class="btn btn-outline-primary">
-                        <i class="bi bi-pencil-square"></i> Edit
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@x.Id" class="btn btn-outline-danger">
-                        <i class="bi bi-trash"></i> Delete
-                    </a>
-                </td>
-            </tr>
-        }
+<tr>
+    <td class="text-primary">@x.Name</td>
+    <td class="text-primary">@x.Price</td>
+    <td class="text-primary">@x.Category.Name</td>
+    <td>
+        @if (x.ImageUrl != null)
+        {
+<img src="@x.ImageUrl" style="width:100px" />}
+    </td>
+    <td>
+        <a asp-action="Update" asp-route-id="@x.Id" class="btn btn-outline-primary">
+            <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a asp-action="Delete" asp-route-id="@x.Id" class="btn btn-outline-danger">
+            <i class="bi bi-trash"></i> Delete
+        </a>
+    </td>
+</tr>}
     </tbody>
 </table>
+
+<div>
+    <ul class="pagination text-center">
+        <li class="page-item">
+            <a class="page-link" asp-action="Index" asp-route-page="ViewBag.pageSum">&laquo;</a>
+        </li>
+        @for (var i = 1; i <= ViewBag.pageSum; i++)
+        {
+            <li class="page-item  @(ViewBag.pageIndex == i ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-page="@i"> @i </a>
+            </li>
+        }
+            <li class="page-item @(ViewBag.pageIndex == ViewBag.pageSum ? "" : "")">
+                <a class="page-link" asp-action="Index" asp-route-page="1">&raquo;</a>
+            </li>
+    </ul>
+</div>
+

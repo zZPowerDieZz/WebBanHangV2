@@ -25,7 +25,7 @@
 
                 <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-control text-primary">
 
-                    <option disabled selected>==Select category===</option>
+                    <option disabled selected class="text-primary">==Select category===</option>
                 </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>

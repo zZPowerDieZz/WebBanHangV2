@@ -1,6 +1,7 @@
 ﻿@model Category
-    <br>
-    <partial name="_Notification" />
+
+<partial name="_Notification" />
+<br>
 <form asp-action="Add" method="post">
     <h2 class="text-primary">Add Category</h2>
     <hr />
@@ -18,6 +19,6 @@
     <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
 </form>
 
-@section Scripts{ 
+@section Scripts{
     <partial name="_ValidationScriptsPartial">
 }
