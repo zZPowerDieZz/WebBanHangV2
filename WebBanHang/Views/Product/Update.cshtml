@@ -8,26 +8,9 @@
         <div class="col-md-4">
             @if (!string.IsNullOrEmpty(Model.ImageUrl))
             {
-                <img src="/@Model.ImageUrl" style="width:300px" id="previewImage" />
+                <img src="/@Model.ImageUrl" style="width:300px" id="previewImage" />            
             }
-            @section Scripts{
-                <script>
-                    document.querySelectorAll('input[type="file"]').forEach(input => {
-                        input.addEventListener('change', function (event) {
-                            const file = event.target.files[0];
-                            if (file) {
-                                const reader = new FileReader();
-                                reader.onload = function (e) {
-                                    const img = document.getElementById("previewImage");
-                                    img.src = e.target.result;
-                                };
-                                reader.readAsDataURL(file);
-                                }
-                            });
-                        });
-                </script>
-            }
-            </div>
+        </div>
         <div class="col-md-8">
             <div class="form-group pb-2">
                 <label class="text-primary">Name</label>
@@ -61,3 +44,24 @@
         </div>
     </div>
 </form>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+
+    <script>
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.getElementById("previewImage");
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+}
