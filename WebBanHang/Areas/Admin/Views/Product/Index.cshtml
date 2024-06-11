@@ -11,6 +11,17 @@
         </a>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12 text-center">
+       <form asp-action="Index" method="post">
+           <div class="form-inline text-primary">
+               Name <input name="textsearch" class="form-control ml-3">
+               <button type="submit" class="btn btn-outline-primary text-primary">Search</button>
+           </div>
+        </form>
+    </div>
+</div>
+<br>
 <table class="table table-bordered table-striped">
     <thead>
         <tr class="text-primary table-primary">
@@ -20,6 +31,7 @@
             <th>Image</th>
             <th>Action </th>
         </tr>
+        
     </thead>
     <tbody class="table-secondary">
         @foreach (var x in Model)
@@ -28,10 +40,10 @@
     <td class="text-primary">@x.Name</td>
     <td class="text-primary">@x.Price</td>
     <td class="text-primary">@x.Category.Name</td>
-    <td>
+    <td class="text-center">
         @if (x.ImageUrl != null)
         {
-<img src="@x.ImageUrl" style="width:100px" />}
+<img src="/@x.ImageUrl" style="width:100px" />}
     </td>
     <td>
         <a asp-action="Update" asp-route-id="@x.Id" class="btn btn-outline-primary">

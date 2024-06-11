@@ -27,7 +27,7 @@ namespace WebBanHang.Controllers
             return View();
         }
         // Xử lý thêm mới
-        [HttpPost]
+        [HttpPost]//Thiếu không thể load page
         public IActionResult Add(Category category)
         {
             if (ModelState.IsValid) //Kiểm tra hợp lệ
