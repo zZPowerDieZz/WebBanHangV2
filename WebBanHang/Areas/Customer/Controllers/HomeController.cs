@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WebBanHang.Helpers;
 using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
@@ -36,6 +37,8 @@ namespace WebBanHang.Controllers
             ViewBag.pageIndex = pageIndex;
 
             return View(productList.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList());
+
+            
         }
 
         public IActionResult Privacy()
