@@ -18,8 +18,11 @@ namespace WebBanHang.Areas.Customer.Controllers
         public IActionResult Index()
         {
             Cart cart = HttpContext.Session.GetJson<Cart>("CART");
-            if()
-            return View();
+            if( cart == null)
+            {
+                cart = new Cart();
+            }
+            return View(cart);
         }
 
         public IActionResult AddToCart(int productId)
@@ -35,7 +38,7 @@ namespace WebBanHang.Areas.Customer.Controllers
                 cart.Add(product, 1);
                 HttpContext.Session.SetJson("CART", cart);
                 return RedirectToAction("Index");
-                //return Json(new { msg = "success" });
+                //return Json(new { msg = "success" , qty = cart.Quantity});
             }
             return Json(new { msg = "error" });
         }

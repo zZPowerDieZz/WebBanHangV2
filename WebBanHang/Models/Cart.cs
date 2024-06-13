@@ -27,7 +27,7 @@ namespace WebBanHang.Models
             var item = _items.FirstOrDefault(x => x.Product.Id == p.Id);
             if (item == null) //Nếu chưa có
             {
-                _items.Add(new CartItem { Product = item.Product, Quantity = qty });
+                _items.Add(new CartItem { Product = p, Quantity = qty });
             }
             else //Nếu có rồi
             {
@@ -60,6 +60,7 @@ namespace WebBanHang.Models
             }
         }
         //Tính tổng thành tiền có 2 cách
+
         //Cách 1
         //public double Total
         //{
