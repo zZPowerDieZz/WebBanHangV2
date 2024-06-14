@@ -80,10 +80,13 @@ namespace WebBanHang.Models
             }
         }
         //Tính tổng số lượng sản phẩm
-        public double Quantity()
+        public double Quantity
         {
+            get
+            {
                 double total = _items.Sum(x => x.Quantity);
                 return total;
+            }
         }
     }
 }
