@@ -12,6 +12,7 @@ using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
 {
+    [Area("Admin")]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
