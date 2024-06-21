@@ -30,16 +30,18 @@ namespace WebBanHang
         {
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("name=DefaultConnection"));
-            services.AddSession();
             //services.AddIdentity<IdentityUser>()
             //services.AddIdentity < ApplicationUser>()
             services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddRazorPages();
+            services.AddSession();
             services.AddScoped<IEmailSender, EmailSender>();
+
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/Identity/Account"
-
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.LogoutPath = "//Identity/Account/Logout";
 
             });
         }

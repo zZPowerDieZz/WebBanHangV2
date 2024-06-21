@@ -89,10 +89,10 @@ namespace WebBanHang.Areas.Identity.Pages.Account
             //lấy roles để cung cấp cho giao diện đăng ký
             Input = new InputModel()
             {
-                RoleList = _roleManager.Roles.Select(x=>x.Name).Select(i=> new SelectListItem { Text=i, Value=i})
+                RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem { Text=i, Value=i})
             };
 
-                ReturnUrl = returnUrl;
+            ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
@@ -103,7 +103,8 @@ namespace WebBanHang.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FullName=Input.FullName, Brithday=Input.Brithday };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FullName=Input.FullName, 
+                    Brithday=Input.Brithday };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
