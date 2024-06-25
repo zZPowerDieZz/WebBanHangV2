@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebBanHang.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace WebBanHang
@@ -30,11 +29,9 @@ namespace WebBanHang
         {
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("name=DefaultConnection"));
-            //services.AddIdentity<IdentityUser>()
-            //services.AddIdentity < ApplicationUser>()
+            services.AddSession();
             services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddRazorPages();
-            services.AddSession();
             services.AddScoped<IEmailSender, EmailSender>();
 
             services.ConfigureApplicationCookie(options =>
@@ -63,13 +60,14 @@ namespace WebBanHang
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+            
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllerRoute(
                   name: "areas",
                   pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}"

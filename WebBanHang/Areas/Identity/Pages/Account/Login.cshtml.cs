@@ -86,7 +86,7 @@ namespace WebBanHang.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return RedirectToAction(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
